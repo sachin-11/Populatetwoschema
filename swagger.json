@@ -1,0 +1,211 @@
+{
+    "swagger":"2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Yet Another Node.js Blogg Application API",
+      "description": "Yet Another Node.js Blogg Application API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:5000",
+    "basePath": "/api/v1",
+    "tags": [
+      {
+        "name": "Department",
+        "description": "Create new Department in database"
+      }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+      "/product": {
+        "post": {
+          "tags": ["Product"],
+          "description": "Create new Product in system",
+          "parameters": [
+            {
+              "name": "Product",
+              "in": "body",
+              "description": "Product is created",
+              "schema": {
+                "$ref": "#/definitions/Product"
+              }
+            }
+          ],
+          "produces": ["application/json"],
+          "responses": {
+            "200": {
+              "description": "Product  is created",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/Product"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "get": {
+          "tags": ["Product"],
+          "summary": "Get all Product in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Product"
+              }
+            }
+          }
+        }
+      },
+      "/product/{productId}": {
+        "parameters": [
+          {
+            "name": "Product",
+            "in": "body",
+            "description": "Product is created",
+            "schema": {
+              "$ref": "#/definitions/Product"
+          }
+        }
+        ],
+        "post": {
+          "tags": ["Product"],
+          "summary": "create product with given ID",
+          "responses": {
+            "200": {
+              "description": "Product is found",
+              "schema": {
+                "$ref": "#/definitions/Product"
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete Departments with given ID",
+          "tags": ["Department"],
+          "responses": {
+            "200": {
+              "description": "Product is deleted",
+              "schema": {
+                "$ref": "#/definitions/Department"
+              }
+            }
+          }
+        },
+        
+        "put": {
+          "summary": "Update Department with give ID",
+          "tags": ["Department"],
+          "parameters": [
+            {
+              "name": "Department",
+              "in": "body",
+              "description": "Product with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/Department"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Department is updated",
+              "schema": {
+                "$ref": "#/definitions/Department"
+              }
+            }
+          }
+        }
+      },
+      "/review": {
+        "post": {
+          "tags": ["Review"],
+          "description": "Create new Review in system",
+          "parameters": [
+            {
+              "name": "Review",
+              "in": "body",
+              "description": "Review is created",
+              "schema": {
+                "$ref": "#/definitions/Review"
+              }
+            }
+          ],
+          "produces": ["application/json"],
+          "responses": {
+            "200": {
+              "description": "Review is created",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/Review"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "get": {
+          "tags": ["Review"],
+          "summary": "Get all Review in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Review"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Review": {
+        "required": [ "_id"],
+        "properties": {
+         "stars": {
+           "type": "number",
+           "uniqueItems": true
+         },
+         "review": {
+            "type": "string"
+         }
+        }
+      },
+     "Product": {
+      "required": ["code", "_id"],
+       "properties": {
+         "name": {
+           "type": "string",
+           "uniqueItems": true
+         },
+         "quantity": {
+           "type": "number"
+         }
+       }
+     }
+      }
+     
+  
+    }
+  
