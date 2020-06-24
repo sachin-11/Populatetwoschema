@@ -21,7 +21,6 @@ router.post('/', async (req, res) => {
     name: Joi.string().required(),
     quantity: Joi.number().required(),
     reviews: Joi.array().items(Joi.string().required()),
-    //_id: Joi.objectId(),
   })
   var prod = Schema.validate(req.body)
   if(prod.error)

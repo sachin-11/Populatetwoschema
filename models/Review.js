@@ -8,7 +8,11 @@ var ReviewSchema = new Schema({
   },
   review: {
     type: String,
-  }
+  },
+   owner: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Review'
+  }]
 }, {
   toJSON: { virtuals: true },
   toObject: { virtuals: true },
